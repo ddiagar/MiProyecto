@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+<% unless @article.user.nil? %>
+
+<p>
+	Escrito por: <%= @article.user.email %>
+</p>
+
+<% end %>
+<p>
+	Visitas: <%= @article.visits_count %>
+</p>
+<p>
+  <strong>Titulo:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @article.body %>
+</p>
+
+
+<div class="field">
+	<h3>Comentarios</h3>
+	<%= render "comments/form" %>
+	<ul>
+			<%= @article.comments.each do |comment| %>
+		<li>
+			<%= comment.body %> - <%= comment.user.email %>
+		</li>
+		<%end%>
+	</ul>
+
+</div>
+
+<%= link_to 'Editar', edit_article_path(@article) %> |
+<%= link_to 'Volver', articles_path %>

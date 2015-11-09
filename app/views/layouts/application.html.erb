@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rivendel el concilio</title>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+ 
+ <header>
+ 	<nav class="be-dark white large-padding">
+ 		<ul class="no-list row center-xs middle-xs">
+ 		<div class="col-md col-xs">
+    <h1 class="no-margin" id="logo"><%= link_to "Rivendel el Concilio", root_path %> </h1>
+ 			
+ 		</div>
+ 		
+ 		<div class="col-md col-xs">
+ 			<%= link_to "Articulos", articles_path %>
+ 		</div>	
+
+
+      <% if user_signed_in? %>
+    <div class="col-md col-xs">
+      <a href="<%= edit_user_registration_path(current_user) %>">Editar Perfil </a> 
+    </div>
+    <div class="col-md col-xs">
+      <a href="<%= destroy_user_session_path %>", data-method="delete">Cerrar Session </a> 
+    </div>
+  <% else %>
+    <div class="col-md col-xs"><a href="<%= new_user_session_path %>">Ingresar </a>  </div>
+    <div class="col-md col-xs"><a href="<%= new_user_registration_path %>">Registrarse </a>  </div>
+    <% end -%>
+ 		
+      </ul>
+    </form>
+  </section>
+
+ 		</div>
+ 
+ 		</ul>
+ 	</nav>
+  <p class="notice"><%= notice %></p>
+ <p class="alert"><%= alert %></p>
+ </header>
+
+
+<%= yield %>
+
+</body>
+
+
+</html>

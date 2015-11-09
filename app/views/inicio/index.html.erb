@@ -1,0 +1,16 @@
+<% if user_signed_in? %>
+<center><h1>Bienvenido <%= current_user.email %></h1></center>
+
+<% else user_signed_in? %>
+<center><H1>Bienvenidos a mi Blog</H1></center>
+<% end -%>
+
+
+<br>
+<br>
+
+<div class="col-md col-xs">
+	<center><p>
+		Aquí podras encontrar actualizaciones diarias sobre mis libros favoritos, proximos lanzamientos de las sagas que actualmente estoy leyendo.
+	</p></center>
+</div>

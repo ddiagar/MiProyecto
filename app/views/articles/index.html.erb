@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Articulos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Cuerpo</th>
+      <th>Visitas</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <h1><td><%= article.title %></td></h1>
+        <td><%= article.body %></td>
+        <td><%= article.visits_count %></td>
+        <td><%= link_to 'Leer', article %></td>
+        <td><%= link_to 'Editar', edit_article_path(article) %></td>
+        <td><%= link_to 'Eliminar', article, method: :delete, data: { confirm: 'Preciona aceptar si quieres eliminar el Articulo' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Crear nuevo Articulo', new_article_path %>
