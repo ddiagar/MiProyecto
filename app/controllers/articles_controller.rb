@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
   before_action :set_article, except: [:index, :new, :create ]
   before_action :authenticate_user!, except: [:show, :index]
-
+  before_action :authenticate_editor!, only: [:new, :create, :update]
+  before_action :authenticate_admin!, only: [:destroy]
   # GET /articles
   # GET /articles.json
   def index
@@ -18,6 +19,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    @categories = Category.all
   end
 
   # GET /articles/1/edit
@@ -28,6 +30,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = current_user.articles.new(article_params)
+    @article.categories = params[:categories]
 
     respond_to do |format|
       if @article.save
@@ -72,6 +75,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :categories)
     end
 end

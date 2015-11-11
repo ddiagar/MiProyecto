@@ -19,6 +19,16 @@
   <div class="field">
     <%= f.text_area :body, placeholder: "Escribe aquí el artículo", style:"height:250px; width:100%", class:"form-control" %> 
   </div>
+
+  <div class="field">
+    <label>Categorias</label>
+      <% @categories.each do |category| %>
+        <div class="field">
+        <%= check_box_tag "categories[]", category.id %> <%= category.name %>
+        </div>
+      
+    <% end %>
+  </div>
   
 <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="actions">
